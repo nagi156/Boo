@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Editing Book</h1>
+        <div class= "editing_book">
+        <%= form_with model: @book, url: book_path(@book), method: :patch do |f| %>
+          <div class="col">
+            <div class="form_group">
+              <p for="book_title">Title</p>
+              <%= f.text_field :title %>
+            </div>
+          </div>
+          <div class="col">
+            <div class= "form_group">
+              <p for="book_body">Opinion</p>
+              <%= f.text_field :body %>
+            </div>
+          </div>
+        </div>
+         <div class="col">   
+          <div class= "form_group">
+            <%= f.submit 'Update Book', class: "btn btn-success" %>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to "Show", book_path(@book) %> |
+      
+      <%= link_to "Back", books_path %>
+    </div>
+  </div>
+</div>    

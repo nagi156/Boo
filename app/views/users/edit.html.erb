@@ -1,1 +1,35 @@
-
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      <%= form_with model: @user do |f| %>
+        <div class="col">
+          <div class="form_group">
+            <p for="inputName">Name</p>
+            <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name"%>
+          </div>
+        </div>
+        
+        <div class="col">
+          <div class="form_group">
+            <p for="inputImage">Image</p>
+            <%= f.file_field :profile_image, placeholder: "Image", accept: "image/*" %>
+          </div>
+        </div>
+            
+        <div class="col">
+          <div class="form_group">
+            <p for="inputIntroduction">Introduction</p>
+            <%= f.text_area :introduction %>
+          </div>
+        </div>
+            
+        <div class="col">   
+          <div class= "form_group">
+            <%= f.submit "Update User", class: "btn btn-secondary" %>
+          </div>
+        </div>  
+      <% end %>
+    </div>
+  </div>
+</div>

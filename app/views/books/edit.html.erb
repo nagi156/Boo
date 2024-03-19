@@ -2,30 +2,43 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h1>Editing Book</h1>
-        <div class= "editing_book">
+      <% if @book.errors.any? %>
+        <div id="errors">
+          <h2><%= pluralize(@book.errors.count,"errors") %> prohibited this book from being saved:</h2>
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+        
+      <div class= "editing_book">
         <%= form_with model: @book, url: book_path(@book), method: :patch do |f| %>
           <div class="col">
-            <div class="form_group">
+            <div class="form-group">
               <p for="book_title">Title</p>
-              <%= f.text_field :title %>
+              <%= f.text_field :title, class: "form-control" %>
             </div>
           </div>
+          
           <div class="col">
-            <div class= "form_group">
+            <div class= "form-group">
               <p for="book_body">Opinion</p>
-              <%= f.text_field :body %>
+              <%= f.text_area :body, class: "form-control" %>
             </div>
           </div>
-        </div>
+          
          <div class="col">   
-          <div class= "form_group">
+          <div class= "form-group">
             <%= f.submit 'Update Book', class: "btn btn-success" %>
           </div>
         </div>
       <% end %>
-      <%= link_to "Show", book_path(@book) %> |
-      
-      <%= link_to "Back", books_path %>
+    </div>
+    
+    <%= link_to "Show", book_path(@book) %> |
+    
+    <%= link_to "Back", books_path %>
     </div>
   </div>
 </div>    

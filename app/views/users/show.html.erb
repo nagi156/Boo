@@ -2,7 +2,7 @@
   <div class="row">
     <%= render 'books/info', book: @book, user: @user %><!--部分テンプレート貼る-->
      <!--ユーザーbook詳細-->
-     <div class="col-md-8 offset-md-1">
+    <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table table-hover table-inverse">
         <thead>
@@ -16,9 +16,7 @@
         <tbody>
           <% @books.each do |book| %>
             <tr>
-              <td>
-                <%= image_tag book.user.get_profile_image(80,80) %>
-              </td>
+              <td><%= image_tag book.user.get_profile_image(80,80) %></td>
               <td>
                 <%= link_to book_path(book) do %>
                   <%= book.title %>
@@ -29,7 +27,8 @@
           <% end %>
         </tbody>
       </table>
-    </div><!--ここまで一覧画面-->
+    </div>
+    <!--ここまで-->
   </div>
 </div>
 

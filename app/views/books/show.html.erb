@@ -1,24 +1,26 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <%= render 'info', book: @books, user: @user %><!--部分テンプレート貼る-->
-     <!--book詳細-->
-     <div class="col-md-8 offset-md-1">
+   <!--book詳細-->
+    <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table table-hover table-inverse">
         <tbody>
           <tr>
             <td><%= image_tag @book.user.get_profile_image(80,80) %><br>
-                <%= link_to user_path(@user.id) do %>
-                  <%= @book.user.name %>
-                <% end %>
+              <%= link_to user_path(@user.id) do %>
+                <%= @book.user.name %>
+              <% end %>
             </td>
             <td>
               <%= link_to book_path(@book) do %>
                 <%= @book.title %>
               <% end %>
             </td>
-            <td><%= @book.body %></td>
-
+            <td>
+              <%= @book.body %>
+            </td>
+            
             <% if @user == current_user %>
               <td>
                 <%= link_to edit_book_path(@book), class: "btn btn-success btn-sm" do %>
@@ -31,10 +33,10 @@
                 <% end %>
               </td>
             <% end %>
-
           </tr>
         </tbody>
       </table>
     </div>
+  <!--ここまでbook詳細-->  
   </div>
 </div>

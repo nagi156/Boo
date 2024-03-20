@@ -2,6 +2,17 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>User info</h2>
+      <div id="errors">
+        <% if @user.errors.any? %>
+          <h2><%= pluralize(@user.errors.count,"errors") %> prohibited this book from being saved:</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
       <%= form_with model: @user do |f| %>
         <div class="col">
           <div class="form_group">

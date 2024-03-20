@@ -14,10 +14,8 @@
     </tbody>
   </table>
   <div class="row">
-    <% if @user == current_user %>
-      <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
-        <i class="fa fa-user-gear"></i>
-      <% end %>
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fa-solid fa-user-gear"></i>
     <% end %>
   </div>
   <!--ここからNew book-->
@@ -41,7 +39,7 @@
         </div>
       </div>
       <div class= "form-group">
-        <%= f.submit 'Create Book', class: "btn btn-success" %>
+        <%= f.submit 'Create Book', class: "btn btn-success"; %>
       </div>
     <% end %>
   </div>

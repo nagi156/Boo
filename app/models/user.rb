@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many :books, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   has_one_attached :profile_image
   
@@ -18,6 +19,10 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  def already_favorited?(book)
+    self.favorites.exists?(book_id: book.id)
   end
  
 end

@@ -1,13 +1,18 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <%= render 'info', book: @new_book, user: @user %><!--部分テンプレート貼る-->
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <%= render 'users/info', user: @user %>
+      <h2>User info</h2>
+      <%= render 'form', book: @new_book%>
+    </div>
    <!--book詳細-->
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table table-hover table-inverse">
         <tbody>
           <tr>
-            <td><%= image_tag @book.user.get_profile_image(80,80) %><br>
+            <td><%= image_tag @book.user.get_profile_image, size: "80x80" %><br>
               <%= link_to user_path(@user.id) do %>
                 <%= @book.user.name %>
               <% end %>
@@ -20,17 +25,8 @@
             <td>
               <%= @book.body %>
             </td>
-            <td>
-                <% if current_user.already_favorited?(@book)%>
-                  <%= link_to book_favorites_path(@book), method: :delete do %>
-                    <i class="fa-solid fa-heart", style="color: red;"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to book_favorites_path(@book), method: :post do %>
-                    <i class="fa-regular fa-heart" ></i>
-                  <% end %>
-                <% end %>
-                <%= @book.favorites.count %>
+            <td id= "favorite_btn_<%= @book.id %>">
+              <%= render 'favorites/btn', book: @book %>
             </td>
             <% if @user == current_user %>
               <td>
@@ -48,6 +44,6 @@
         </tbody>
       </table>
     </div>
-  <!--ここまでbook詳細-->  
+  <!--ここまでbook詳細-->
   </div>
 </div>

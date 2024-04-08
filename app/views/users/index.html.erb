@@ -1,32 +1,14 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <%= render 'books/info', book: @book, user: @user %><!--部分テンプレート貼る-->
-    <!--ここからユーザー一覧-->
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'info',user: current_user %><!--部分テンプレート貼る-->
+      <h2>New Book</h2>
+      <%= render 'books/form', book: @book%>
+    </div>
     <div class="col-md-8 offset-md-1">
       <h2>Users</h2>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th scopre="col">image</th>
-            <th scopre="col">name</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= image_tag user.get_profile_image(80,80) %></td>
-              <td><%= user.name %></td>
-              <td>
-                <%= link_to user_path(user) do %>
-                 Show
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render 'index', users: @users %>
     </div>
-    <!--ここまでユーザー一覧-->
   </div>
 </div>

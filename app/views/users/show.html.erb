@@ -1,6 +1,11 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <%= render 'books/info', book: @book, user: @user %><!--部分テンプレート貼る-->
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'info', user: @user %><!--部分テンプレート貼る-->
+      <h2>New Book</h2>
+      <%= render 'books/form', book: @book%>
+    </div>    
      <!--ユーザーbook詳細-->
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -18,7 +23,7 @@
             <tr>
               <td>
                 <%= link_to user_path(book.user) do %>
-                  <%= image_tag book.user.get_profile_image(80,80) %>
+                  <%= image_tag book.user.get_profile_image, size: "80x80" %>
                 <% end %>
               </td>
               <td>

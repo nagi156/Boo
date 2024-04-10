@@ -30,5 +30,16 @@ class User < ApplicationRecord
   def followed_by?(user)
      followings.include?(user)
   end
-
+  
+  def self.search_for(pattern,word)
+    if pattern == 'perfect'
+      User.where(name: word)
+    elsif pattern == 'forward'
+      User.where('name LIKE ?', word + '%')
+    elsif pattern == 'backward'
+      User.where('name LIKE ?', '%' + word )
+    else
+      User.where('name LIKE ?', '%' + word + '%')
+    end
+  end
 end

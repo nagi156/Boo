@@ -18,8 +18,8 @@
   </tr>
 </table>
 <div class="row">
-  <% if user != current_user %>
-    <%= render 'relationships/btn', user: user %>
+  <% if current_user != user %>
+    <%= render 'relationships/btn', user: user, options: { class: "" } %>
   <% else %>
     <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fa-solid fa-user-gear"></i>

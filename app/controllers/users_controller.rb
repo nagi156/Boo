@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :is_matching_login_user, only: [:update, :edit]
+  
   def index
     @users = User.all
     @user = current_user
@@ -31,16 +33,6 @@ class UsersController < ApplicationController
       flash[:alert] = "You have not successfully updated."
       render :edit
     end
-  end
-  
-  def followings
-    user = User.find(params[:user_id])
-    @users = user.followings
-  end
-  
-  def followers
-    user = User.find(params[:user_id])
-    @users = user.followers
   end
   
   private

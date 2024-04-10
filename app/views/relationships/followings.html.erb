@@ -1,9 +1,6 @@
-<h2>Following User</h2>
-<table>
-  <tbody>
-    <tr>
-      <% 
-      <th></th>
-    </tr>
-  </tbody>
-</table>
+<h2>Follow User</h2>
+<% if @users.exists? %>
+  <%= render 'users/index', users: @users %>
+<% else %>
+  ユーザーはいません
+<% end %>

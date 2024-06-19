@@ -13,6 +13,7 @@ class User < ApplicationRecord
   # アソシエーションと一覧表示のためにフォロワー取得（ソースは相手が自分をフォローしている人から持ってきて自分がフォローされている人として表示）
   has_many :reverse_relationships, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :following
+  has_many :notifications, dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -30,7 +31,7 @@ class User < ApplicationRecord
   def followed_by?(user)
      followings.include?(user)
   end
-  
+
   def self.search_for(pattern,word)
     if pattern == 'perfect'
       User.where(name: word)
